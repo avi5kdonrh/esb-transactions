@@ -29,9 +29,7 @@
     <name>JBoss Fuse :: Examples :: Transactions</name>
 
     <modules>
-        <module>datasource</module>
         <module>database</module>
-        <module>routing</module>
         <module>features</module>
     </modules>
 
@@ -39,13 +37,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- versions of dependencies -->
-        <jboss.fuse.bom.version>6.3.0.redhat-187</jboss.fuse.bom.version>
+        <jboss.fuse.bom.version>7.2.0.fuse-730035-redhat-00001</jboss.fuse.bom.version>
         <slf4j.version>1.7.10</slf4j.version>
         <logback.version>1.1.2</logback.version>
-        <karaf.version>2.4.0.redhat-630187</karaf.version>
-        <camel.version>2.17.0.redhat-630187</camel.version>
+        <karaf.version>4.2.0.fuse-731003-redhat-00003</karaf.version>
+        <camel.version>2.21.0.fuse-731003-redhat-00003</camel.version>
         <activemq.version>5.11.0.redhat-630187</activemq.version>
-        <hibernate.version>4.2.19.Final-redhat-1</hibernate.version>
+        <hibernate.version>5.3.7.Final-redhat-00001</hibernate.version>
         <aries.transaction.jdbc.version>2.1.1</aries.transaction.jdbc.version>
         <spring.version>3.2.12.RELEASE</spring.version>
         <spring.osgi.version>3.2.12.RELEASE_2</spring.osgi.version>
@@ -76,7 +74,6 @@
         <mycila.license.plugin>2.8</mycila.license.plugin>
 
         <!-- default properties -->
-        <database />
         <osgi-import-pkg>*</osgi-import-pkg>
         <osgi-export-pkg />
         <osgi-private-pkg />
@@ -116,9 +113,9 @@
             <!-- JBoss Fuse BOM -->
 
             <dependency>
-                <groupId>org.jboss.fuse.bom</groupId>
-                <artifactId>jboss-fuse-parent</artifactId>
-                <version>${jboss.fuse.bom.version}</version>
+                <groupId>org.jboss.redhat-fuse</groupId>
+                <artifactId>fuse-karaf-bom</artifactId>
+                <version>7.2.0.fuse-720020-redhat-00001</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -223,11 +220,7 @@
 
             <!-- Camel -->
 
-            <dependency>
-                <groupId>org.apache.activemq</groupId>
-                <artifactId>activemq-camel</artifactId>
-                <version>${activemq.version}</version>
-            </dependency>
+           
 
             <dependency>
                 <groupId>org.apache.camel</groupId>
@@ -310,8 +303,8 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <!-- Felix -->
@@ -319,7 +312,6 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
-                <version>${felix.bundle.plugin.version}</version>
                 <configuration>
                     <instructions>
                         <Meta-Persistence>${persistence-file}</Meta-Persistence>
@@ -340,25 +332,25 @@
         </plugins>
     </build>
 
-    <profiles>
+    <!--<profiles>
         <profile>
             <id>postgresql</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <database>postgresql</database>
+                <database></database>
             </properties>
         </profile>
         <profile>
-            <!--
+            
                 Do a license check by running:
                     mvn -Plicense com.mycila:license-maven-plugin:check
                 or:
                     mvn -Plicense verify
                 Update the license headers by running:
                     mvn -Plicense com.mycila:license-maven-plugin:format
-            -->
+            
             <id>license</id>
             <build>
                 <plugins>
@@ -383,7 +375,7 @@
                         <executions>
                             <execution>
                                 <id>default</id>
-                                <!-- This is the phase this plugin runs by default. Just an explicit information -->
+                                 This is the phase this plugin runs by default. Just an explicit information 
                                 <phase>verify</phase>
                                 <goals>
                                     <goal>check</goal>
@@ -394,6 +386,6 @@
                 </plugins>
             </build>
         </profile>
-    </profiles>
+    </profiles>-->
 
 </project>
